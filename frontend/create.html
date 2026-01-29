@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Evaluation | Citizen Jury</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6366F1",
+            secondary: "#22C55E",
+            accent: "#F59E0B",
+            danger: "#EF4444"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-700 min-h-screen text-gray-900">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="bg-white/90 backdrop-blur shadow-xl sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
+    <div>
+      <h1 class="text-3xl font-extrabold text-primary">Citizen Jury</h1>
+      <p class="text-xs text-gray-500">Human Intelligence for Fair AI</p>
+    </div>
+    <div class="flex gap-3">
+      <span class="px-4 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm">Company</span>
+      <span class="px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm">Live</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="max-w-7xl mx-auto px-8 py-20 text-white">
+  <h2 class="text-6xl font-black leading-tight max-w-4xl">
+    Create a Citizen Jury  
+    <span class="block text-yellow-300">Fairness Evaluation</span>
+  </h2>
+
+  <p class="mt-6 text-xl max-w-3xl text-white/90">
+    Upload two algorithm outputs.  
+    Let real people judge usefulness and fairness — blindly, ethically, transparently.
+  </p>
+
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+    <div class="bg-white/20 backdrop-blur p-6 rounded-2xl">
+      ⚖ Bias Detection
+    </div>
+    <div class="bg-white/20 backdrop-blur p-6 rounded-2xl">
+      🧠 Human Judgement
+    </div>
+    <div class="bg-white/20 backdrop-blur p-6 rounded-2xl">
+      📊 Actionable Insights
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAIN CARD ================= -->
+<main class="max-w-7xl mx-auto px-8 pb-32">
+
+  <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden">
+
+    <!-- SECTION HEADER -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-12 py-10 text-white">
+      <h3 class="text-4xl font-bold">Evaluation Setup</h3>
+      <p class="mt-2 opacity-90">
+        Jurors will never see algorithm names, company identity, or labels.
+      </p>
+    </div>
+
+    <!-- ================= CASE INFO ================= -->
+    <section class="px-12 py-12 border-b">
+      <h4 class="text-3xl font-bold text-indigo-700 mb-8">
+        🧾 Case Information
+      </h4>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        <div>
+          <label class="font-semibold text-lg">Case Title</label>
+          <input
+            class="mt-2 w-full p-5 border rounded-2xl focus:ring-4 focus:ring-indigo-300"
+            placeholder="College Rankings for Engineering Aspirants"
+          />
+          <p class="text-sm text-gray-500 mt-2">
+            This title is shown to jurors. Keep it neutral.
+          </p>
+        </div>
+
+        <div>
+          <label class="font-semibold text-lg">Target Audience</label>
+          <select class="mt-2 w-full p-5 border rounded-2xl">
+            <option>Students</option>
+            <option>Job Seekers</option>
+            <option>Creators</option>
+            <option>General Public</option>
+          </select>
+          <p class="text-sm text-gray-500 mt-2">
+            Used to match jurors correctly.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ALGO A ================= -->
+    <section class="px-12 py-16 bg-indigo-50 border-b">
+      <h4 class="text-3xl font-bold text-indigo-700 mb-4">
+        🔵 Algorithm Output – Version One
+      </h4>
+      <p class="text-gray-600 mb-10 max-w-3xl">
+        Paste the ranked output from your first algorithm.  
+        Order matters. One item per line.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <textarea rows="14"
+          class="w-full p-5 border rounded-2xl focus:ring-4 focus:ring-indigo-300"
+          placeholder="1. IIT Bombay&#10;2. Delhi University&#10;3. JNU"></textarea>
+
+        <div class="bg-white rounded-3xl shadow-lg p-8">
+          <h5 class="text-xl font-bold text-indigo-600 mb-4 text-center">
+            Juror Preview
+          </h5>
+          <ul class="space-y-4">
+            <li class="p-4 bg-indigo-100 rounded-xl">Sample Result</li>
+            <li class="p-4 bg-indigo-100 rounded-xl">Sample Result</li>
+            <li class="p-4 bg-indigo-100 rounded-xl">Sample Result</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ALGO B ================= -->
+    <section class="px-12 py-16 bg-green-50 border-b">
+      <h4 class="text-3xl font-bold text-green-700 mb-4">
+        🟢 Algorithm Output – Version Two
+      </h4>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <textarea rows="14"
+          class="w-full p-5 border rounded-2xl focus:ring-4 focus:ring-green-300"
+          placeholder="1. IIT Guwahati&#10;2. BHU&#10;3. JMI"></textarea>
+
+        <div class="bg-white rounded-3xl shadow-lg p-8">
+          <h5 class="text-xl font-bold text-green-600 mb-4 text-center">
+            Juror Preview
+          </h5>
+          <ul class="space-y-4">
+            <li class="p-4 bg-green-100 rounded-xl">Sample Result</li>
+            <li class="p-4 bg-green-100 rounded-xl">Sample Result</li>
+            <li class="p-4 bg-green-100 rounded-xl">Sample Result</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ETHICS ================= -->
+    <section class="px-12 py-14 bg-yellow-50">
+      <h4 class="text-3xl font-bold text-yellow-700 mb-6">
+        ⚠ Ethics & Responsible AI Commitment
+      </h4>
+
+      <ul class="space-y-4 text-gray-700 text-lg">
+        <li>✔ No manipulation of jurors</li>
+        <li>✔ No discriminatory use of results</li>
+        <li>✔ Feedback used for responsible improvements</li>
+      </ul>
+
+      <div class="mt-8 flex items-center gap-4">
+        <input type="checkbox" class="w-6 h-6">
+        <span class="font-semibold text-lg">
+          I agree to ethical use of citizen feedback
+        </span>
+      </div>
+    </section>
+
+    <!-- ================= SUBMIT ================= -->
+    <section class="px-12 py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center">
+      <h4 class="text-4xl font-black mb-6">
+        Launch Citizen Jury Evaluation 🚀
+      </h4>
+      <p class="text-lg mb-10 opacity-90">
+        Your case will go live instantly for selected jurors.
+      </p>
+
+      <button class="px-16 py-6 bg-white text-indigo-700 font-extrabold text-xl rounded-full shadow-2xl hover:scale-110 transition">
+        Start Evaluation
+      </button>
+    </section>
+
+  </div>
+</main>
+
+<footer class="text-center text-white/80 py-10">
+  Citizen Jury © 2026 • Designed for Ethical AI
+</footer>
+
+<!-- API JS -->
+<script src="js/create.js"></script>
+
+</body>
+</html>

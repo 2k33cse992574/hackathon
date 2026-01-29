@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Evaluation Results | Citizen Jury</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6366F1",
+            success: "#22C55E",
+            warning: "#F59E0B",
+            danger: "#EF4444"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 min-h-screen text-white">
+
+<!-- ================= NAV ================= -->
+<nav class="bg-white/10 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-10 py-5 flex justify-between items-center">
+    <div>
+      <h1 class="text-2xl font-black">Citizen Jury</h1>
+      <p class="text-xs text-white/70">Fairness Analytics Dashboard</p>
+    </div>
+    <div class="flex gap-4 text-sm">
+      <span class="px-4 py-1 rounded-full bg-green-500/20 text-green-300">LIVE</span>
+      <span class="px-4 py-1 rounded-full bg-indigo-500/20 text-indigo-300">Company View</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="max-w-7xl mx-auto px-10 py-20">
+  <h2 class="text-6xl font-black leading-tight max-w-5xl">
+    Fairness Results for  
+    <span class="block text-yellow-300">College Ranking Evaluation</span>
+  </h2>
+
+  <p class="mt-6 text-xl text-white/80 max-w-4xl">
+    This dashboard summarizes how real users evaluated two algorithmic outputs
+    for usefulness and fairness — without knowing which algorithm produced which result.
+  </p>
+
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="bg-white/10 p-6 rounded-2xl">
+      <p class="text-sm text-white/70">Total Jurors</p>
+      <p id="totalJurors" class="text-4xl font-black text-success">0</p>
+    </div>
+    <div class="bg-white/10 p-6 rounded-2xl">
+      <p class="text-sm text-white/70">Audience</p>
+      <p class="text-2xl font-bold">Students</p>
+    </div>
+    <div class="bg-white/10 p-6 rounded-2xl">
+      <p class="text-sm text-white/70">Status</p>
+      <p class="text-2xl font-bold text-green-400">Ongoing</p>
+    </div>
+    <div class="bg-white/10 p-6 rounded-2xl">
+      <p class="text-sm text-white/70">Confidence Level</p>
+      <p class="text-2xl font-bold text-yellow-400">High</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAIN ================= -->
+<main class="max-w-7xl mx-auto px-10 pb-32">
+
+<!-- ================= SCORE CARDS ================= -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+
+  <div class="bg-gradient-to-br from-green-500/20 to-green-700/20 rounded-3xl p-10 shadow-xl">
+    <h3 class="text-3xl font-bold mb-4">Overall Better List</h3>
+    <p id="betterPercent" class="text-7xl font-black text-green-400">0%</p>
+    <p class="text-white/70 mt-4">
+      Majority of jurors preferred this list for usefulness and relevance.
+    </p>
+  </div>
+
+  <div class="bg-gradient-to-br from-yellow-500/20 to-orange-700/20 rounded-3xl p-10 shadow-xl">
+    <h3 class="text-3xl font-bold mb-4">Overall Fairer List</h3>
+    <p id="fairerPercent" class="text-7xl font-black text-yellow-400">0%</p>
+    <p class="text-white/70 mt-4">
+      Strong signal that one list is perceived as significantly more fair.
+    </p>
+  </div>
+
+</section>
+
+<!-- ================= INTERPRETATION ================= -->
+<section class="bg-white/10 rounded-3xl p-12 mb-20">
+  <h3 class="text-4xl font-black mb-6">How to Interpret These Results</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-lg text-white/80">
+    <div>
+      <h4 class="font-bold text-green-400 mb-2">Usefulness</h4>
+      <p>
+        Indicates which ranking felt more practical, realistic, and helpful
+        to real students.
+      </p>
+    </div>
+    <div>
+      <h4 class="font-bold text-yellow-400 mb-2">Fairness</h4>
+      <p>
+        Reflects diversity, regional representation, and absence of elite bias.
+      </p>
+    </div>
+    <div>
+      <h4 class="font-bold text-indigo-400 mb-2">Trust Signal</h4>
+      <p>
+        High agreement suggests strong confidence in juror judgment.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BREAKDOWN + PIE ================= -->
+<section class="mb-20">
+  <h3 class="text-4xl font-black mb-10">Detailed Vote Breakdown</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+    <div class="bg-white/10 rounded-3xl p-8">
+      <h4 class="text-2xl font-bold mb-6">Better Choice Distribution</h4>
+
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between mb-1">
+            <span>List One</span><span id="betterOneText">0%</span>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-3">
+            <div id="betterBarOne" class="bg-red-400 h-3 rounded-full w-[0%]"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between mb-1">
+            <span>List Two</span><span id="betterTwoText">0%</span>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-3">
+            <div id="betterBarTwo" class="bg-green-400 h-3 rounded-full w-[0%]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white/10 rounded-3xl p-8 flex flex-col items-center">
+      <h4 class="text-2xl font-bold mb-6">Overall Preference</h4>
+      <canvas id="votePieChart" width="280" height="280"></canvas>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= COMMENTS ================= -->
+<section class="bg-white/10 rounded-3xl p-12 mb-20">
+  <h3 class="text-4xl font-black mb-10">What Jurors Are Saying</h3>
+  <div id="commentsBox" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-h-[500px] overflow-y-auto"></div>
+</section>
+
+<!-- ================= ACTIONS ================= -->
+<section class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-14 text-center">
+  <h3 class="text-4xl font-black mb-6">What Should You Do Next?</h3>
+  <p class="text-xl opacity-90 mb-10">
+    Use these insights to improve ranking logic, reduce bias,
+    and build user trust.
+  </p>
+
+  <div class="flex flex-col md:flex-row gap-6 justify-center">
+    <button   id="downloadReport" class="px-10 py-5 bg-white text-indigo-700 font-bold rounded-full hover:scale-105 transition">
+      Download Report
+    </button>
+    <button  id="createEvaluation" class="px-10 py-5 bg-black/30 border border-white/30 rounded-full hover:scale-105 transition">
+      Create New Evaluation
+    </button>
+  </div>
+</section>
+
+</main>
+
+<footer class="text-center text-white/60 py-12">
+  Citizen Jury © 2026 • Human Judgment for Fair Algorithms
+</footer>
+
+<script src="js/results.js"></script>
+</body>
+</html>
